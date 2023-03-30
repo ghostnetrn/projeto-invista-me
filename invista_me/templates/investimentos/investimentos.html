@@ -16,16 +16,22 @@
   </tr>
   {% for dado in dados %}
   <tr>
-    <td>{{ dado.id}}</td>
-    <td>{{ dado.investimento}}</td>
-    <td>{{ dado.valor}}</td>
-    <td>{{ dado.pago}}</td>
-    <td>{{ dado.data}}</td>
-    <td><button class="btn btn-info"><a style="color:white" href="{% url 'detalhe' dado.id %}">Detalhe</a></button></td>
-    <td><button class="btn btn-warning"><a style="color:white" href="{% url 'editar' dado.id %}">Editar</a></button></td>
-    <td><button class="btn btn-danger"><a style="color:white" href="{% url 'excluir' dado.id %}">Excluir</a></button></td>
+    <td>{{ dado.id }}</td>
+    <td>{{ dado.investimento }}</td>
+    <td>{{ dado.valor }}</td>
+    <td>{{ dado.pago }}</td>
+    <td>{{ dado.data }}</td>
+    {% if user.is_authenticated %}
+      <td><button class="btn btn-info"><a style="color:white" href="{% url 'detalhe' dado.id %}">Detalhe</a></button></td>
+      <td><button class="btn btn-warning"><a style="color:white" href="{% url 'editar' dado.id %}">Editar</a></button></td>
+      <td><button class="btn btn-danger"><a style="color:white" href="{% url 'excluir' dado.id %}">Excluir</a></button></td>
+    {% else %}
+      <td><button class="btn btn-info" disabled><a style="color:white" href="{% url 'detalhe' dado.id %}">Detalhe</a></button></td>
+      <td><button class="btn btn-warning" disabled><a style="color:white" href="{% url 'editar' dado.id %}">Editar</a></button></td>
+      <td><button class="btn btn-danger" disabled><a style="color:white" href="{% url 'excluir' dado.id %}">Excluir</a></button></td>
+    {% endif %}
   </tr>
-  {% endfor %}
+{% endfor %}
 </table>
 </div>
 {% endblock %}

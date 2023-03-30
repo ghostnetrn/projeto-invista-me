@@ -14,6 +14,9 @@
     <a class="navbar-brand" href="{% url 'investimentos' %}">Invista-Me!</a>
     <ul style="list-style: none;">
       {% if user.is_authenticated %}
+      <li style="float: left">
+        <strong class="nav-item nav-link">Bem-vindo(a) {{ user.get_username }}</strong>
+        </li>
         <li style="float: left">
         <a href="{% url 'logout' %}" class="nav-item nav-link">Sair</a>
         </li>
